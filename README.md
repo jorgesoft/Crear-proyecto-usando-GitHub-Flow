@@ -1,5 +1,4 @@
 # Crear proyecto usando el GitHub Flow
-Crear proyecto usando el GitHub Flow
 
 ## Prequisitos: 
 
