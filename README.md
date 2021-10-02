@@ -1,13 +1,19 @@
 # Crear proyecto usando el GitHub Flow
 Crear proyecto usando el GitHub Flow
 
-Prequisitos: Crear repositorio en GitHub
+## Prequisitos: 
+
+* Crear repositorio en GitHub
+* Opcional: crear proyecto Kanban en repositorio, TODO:
+  - [APP] Crear TopBar
+  - [CICD] Crear workflows
+  - [APP] Crear SimpleContainer
 
 ### 1. Crear nueva rama 
 Usar un nombre descriptivo, ejemplo: create-navbar
 
-### 2. Agregar commits
-Crear archivo `src/containers/ButtonAppBar/ButtonAppBar.js` y agregar: 
+### 2. Crear archivos y agregar commits
+Crear archivo `touch src/containers/TopBar/TopBar.js` y agregar: 
 
 ```
 import * as React from 'react';
@@ -15,28 +21,17 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/material/Menu';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
-export default function ButtonAppBar() {
+export default function TopBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Hola Mundo
+      <AppBar position="static" color="secondary">
+        <Toolbar variant="dense">
+          <Typography variant="h6" color="inherit" component="div">
+            GitHub Flow Demo 
           </Typography>
-          <Button color="inherit">Login</Button>
+          <GitHubIcon edge="end"/>
         </Toolbar>
       </AppBar>
     </Box>
@@ -48,12 +43,12 @@ En `app.js`
 
 ```
 import './App.css';
-import ButtonAppBar from './containers/ButtonAppBar/ButtonAppBar.js';
+import TopBar from './containers/TopBar/TopBar.js';
 
 function App() {
   return (
     <div className="App">
-      <ButtonAppBar></ButtonAppBar>
+      <TopBar></TopBar>
     </div>
   );
 }
@@ -64,7 +59,59 @@ export default App;
 Mensajes claros. "Con este commit..."
 
 ### 3. Abrir pull request 
+
+Push la rama desde VS Code. 
+
 ### 4. Discutir y revisar el codigo
-### 5. Despleguar 
-Usar CI/CD
-### 6. Merge
+
+Opcional: Asignar el PR y asociarle una issue del proyecto.
+
+### 5. Merge
+
+Opcional: borrar la rama.
+
+### 6. Crear nueva rama, agregar CI/CD
+
+```
+mkdir -p .github/workflows
+touch .github/workflows/ci.yaml`
+touch .github/workflows/cd.yaml
+```
+
+### 7. Agregar nuevos cambios
+Crear archivo `touch src/containers/SimpleContainer/SimpleContainer.js` y agregar: 
+
+```
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+
+export default function SimpleContainer() {
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <h1>Hola Mundo 2</h1>
+      </Container>
+    </React.Fragment>
+  );
+}
+```
+
+En `app.js`
+
+```
+import './App.css';
+import TopBar from './containers/TopBar/TopBar.js';
+import SimpleContainer from './containers/SimpleContainer/SimpleContainer';
+
+function App() {
+  return (
+    <div className="App">
+      <TopBar></TopBar>
+      <SimpleContainer></SimpleContainer>
+    </div>
+  );
+}
+
+export
