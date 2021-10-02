@@ -7,12 +7,18 @@
   - [APP] Crear TopBar
   - [CICD] Crear workflows
   - [APP] Crear SimpleContainer
+* `npm install @mui/material @emotion/react @emotion/styled @mui/icons-material`
 
 ### 1. Crear nueva rama 
-Usar un nombre descriptivo, ejemplo: crear-navbar
+Usar un nombre descriptivo, ejemplo: crear-TopBar
 
 ### 2. Crear archivos y agregar commits
-Crear archivo `touch src/containers/TopBar/TopBar.js` y agregar: 
+Crear contenedor: 
+```
+mkdir -p src/containers/TopBar/
+touch src/containers/TopBar/TopBar.js
+``` 
+y agregar: 
 
 ```
 import * as React from 'react';
@@ -111,21 +117,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
       - uses: actions/setup-node@master
         with:
           node-version: 12
       - run: npm ci
       - run: npm run build
-      - uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Deploy app build to S3 bucket
+        run: aws s3 sync ./dist/ s3://<bucket-name> --delete
 ```
 
 
 ### 7. Agregar nuevos cambios
-Crear archivo `touch src/containers/SimpleContainer/SimpleContainer.js` y agregar: 
+Nueva rama con un nombre descriptivo, ejemplo: crear-TopBar
+
+Crear contenedor: 
+```
+mkdir -p src/containers/SimpleContainer/
+touch src/containers/SimpleContainer/SimpleContainer.js
+``` 
+y agregar: 
 
 ```
 import * as React from 'react';
@@ -160,4 +176,5 @@ function App() {
   );
 }
 
-export
+export default App;
+```
