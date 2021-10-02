@@ -9,7 +9,7 @@
   - [APP] Crear SimpleContainer
 
 ### 1. Crear nueva rama 
-Usar un nombre descriptivo, ejemplo: create-navbar
+Usar un nombre descriptivo, ejemplo: crear-navbar
 
 ### 2. Crear archivos y agregar commits
 Crear archivo `touch src/containers/TopBar/TopBar.js` y agregar: 
@@ -69,7 +69,8 @@ Opcional: Asignar el PR y asociarle una issue del proyecto.
 
 Opcional: borrar la rama.
 
-### 6. Crear nueva rama, agregar CI/CD
+### 6. Crear nueva rama, agregar CI/CD, PR y merge 
+Usar un nombre descriptivo, ejemplo: crear-cicd
 
 ```
 mkdir -p .github/workflows
