@@ -77,6 +77,52 @@ mkdir -p .github/workflows
 touch .github/workflows/ci.yaml
 touch .github/workflows/cd.yaml
 ```
+En ci.yaml:
+
+```
+name: Node Continuous Integration
+
+on: push
+
+jobs:
+  test_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+```
+
+En cd.yaml:
+
+```
+name: Firebase Continuous Deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm run build
+      - uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+```
+
 
 ### 7. Agregar nuevos cambios
 Crear archivo `touch src/containers/SimpleContainer/SimpleContainer.js` y agregar: 
