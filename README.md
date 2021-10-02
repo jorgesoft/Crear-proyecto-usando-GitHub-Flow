@@ -74,7 +74,7 @@ Usar un nombre descriptivo, ejemplo: crear-cicd
 
 ```
 mkdir -p .github/workflows
-touch .github/workflows/ci.yaml`
+touch .github/workflows/ci.yaml
 touch .github/workflows/cd.yaml
 ```
 
