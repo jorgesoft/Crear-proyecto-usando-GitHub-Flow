@@ -129,7 +129,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./dist/ s3://<bucket-name> --delete
+        run: aws s3 sync ./dist/ s3://crear-proyecto-usando-github-glow.jorgedemo.com --delete
 ```
 
 
