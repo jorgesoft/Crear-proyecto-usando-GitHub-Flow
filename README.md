@@ -7,7 +7,13 @@
   - [APP] Crear TopBar
   - [CICD] Crear workflows
   - [APP] Crear SimpleContainer
-* `npm install @mui/material @emotion/react @emotion/styled @mui/icons-material`
+* En local env:
+```
+sudo apt install nodejs npm
+npx create-react-app github-flow
+cd github-flow
+npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
+```
 
 ### 1. Crear nueva rama 
 Usar un nombre descriptivo, ejemplo: crear-TopBar
@@ -106,7 +112,7 @@ jobs:
 En cd.yaml:
 
 ```
-name: Firebase Continuous Deployment
+name: AWS S3 Continuous Deployment
 
 on:
   push:
@@ -122,14 +128,14 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: us-east-2
       - uses: actions/setup-node@master
         with:
           node-version: 12
       - run: npm ci
       - run: npm run build
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./dist/ s3://crear-proyecto-usando-github-glow.jorgedemo.com --delete
+        run: aws s3 sync ./build/ s3://crear-proyecto-usando-github-glow.jorgedemo.com --delete
 ```
 
 
