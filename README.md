@@ -110,7 +110,7 @@ name: Firebase Continuous Deployment
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   deploy:
