@@ -92,12 +92,12 @@ touch .github/workflows/cd.yaml
 En ci.yaml:
 
 ```
-name: Node Continuous Integration
+name: CI
 
 on: push
 
 jobs:
-  test_pull_request:
+  node_ci_test_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -112,14 +112,14 @@ jobs:
 En cd.yaml:
 
 ```
-name: AWS S3 Continuous Deployment
+name: CD
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
+  s3_deployment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
