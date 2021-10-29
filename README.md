@@ -139,7 +139,7 @@ jobs:
           aws s3 rm s3://crear-proyecto-usando-github-glow.jorgedemo.com --recursive
           aws s3 sync ./build/ s3://crear-proyecto-usando-github-glow.jorgedemo.com
 ```
-
+- Editar App.test.js
 
 ### 7. Agregar nuevos cambios
 Nueva rama con un nombre descriptivo, ejemplo: simple-container
