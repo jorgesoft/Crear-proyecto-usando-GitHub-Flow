@@ -135,7 +135,9 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build/ s3://crear-proyecto-usando-github-glow.jorgedemo.com --delete
+        run: |
+          aws s3 rm s3://crear-proyecto-usando-github-glow.jorgedemo.com --recursive
+          aws s3 sync ./build/ s3://crear-proyecto-usando-github-glow.jorgedemo.com
 ```
 
 
