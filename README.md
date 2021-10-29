@@ -140,7 +140,7 @@ jobs:
 
 
 ### 7. Agregar nuevos cambios
-Nueva rama con un nombre descriptivo, ejemplo: crear-TopBar
+Nueva rama con un nombre descriptivo, ejemplo: simple-container
 
 Crear contenedor: 
 ```
